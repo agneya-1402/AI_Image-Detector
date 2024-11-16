@@ -6,14 +6,14 @@ import base64
 from main_3 import AIImageDetector
 import numpy as np
 
-# Set page configuration
+# page configuration
 st.set_page_config(
     page_title="AI Image Detector",
     page_icon="🔍",
     layout="wide"
 )
 
-# Custom CSS for styling
+# css
 st.markdown("""
     <style>
     .result-box {
@@ -70,7 +70,7 @@ def main():
     # Initialize detector
     detector = AIImageDetector()
     
-    # File uploader
+    # input file 
     uploaded_file = st.file_uploader("Choose an image file", type=['jpg', 'jpeg', 'png'])
     
         
@@ -78,18 +78,17 @@ def main():
     
     if uploaded_file is not None :
         try:
-            # Process the image
+            # Process image
             if uploaded_file is not None:
                 image = Image.open(uploaded_file)
-                # Save temporarily
+                # Save temp
                 temp_path = "temp_image.jpg"
                 image.save(temp_path)
             else:
-                # Handle URL input (you'll need to implement this part)
-                st.error("URL functionality is not implemented yet")
+                st.error("Error in reading image")
                 return
             
-            # Make prediction
+            # predict
             prediction, confidence = detector.predict(temp_path)
             
             with col1:
@@ -99,7 +98,7 @@ def main():
             with col2:
                 st.subheader("Analysis Results")
                 
-                # Display result with colored box
+                # Display result
                 result_class = "real" if prediction == "Real" else "fake"
                 st.markdown(f"""
                     <div class="result-box {result_class}">
@@ -108,10 +107,10 @@ def main():
                     </div>
                 """, unsafe_allow_html=True)
                 
-                # Display confidence gauge
+                # confidence gauge
                 st.plotly_chart(create_confidence_gauge(confidence, prediction))
                 
-                # Additional information
+                # Additional info
                 st.markdown("### Details")
                 if prediction == "Real":
                     st.success("""
