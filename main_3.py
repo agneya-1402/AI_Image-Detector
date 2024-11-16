@@ -7,10 +7,10 @@ import numpy as np
 
 class AIImageDetector:
     def __init__(self):
-        # Initialize the model
+        # Init model
         self.model = resnet18(pretrained=True)
         
-        # Modify the final layer for binary classification
+        # final layer -> binary classification
         num_features = self.model.fc.in_features
         self.model.fc = nn.Sequential(
             nn.Linear(num_features, 256),
@@ -86,12 +86,13 @@ class AIImageDetector:
 
 # usage
 def main():
-    # Initialize detector
+    # Init detector
     detector = AIImageDetector()
-    
-    # Use detector after training
-    image_path = "Deepfake_Detector/imgs/me2.jpeg"
+    # input image
+    image_path = "Deepfake_Detector/imgs/7.jpg"
+    #predict
     prediction, confidence = detector.predict(image_path)
+    # print
     print(f"Prediction: {prediction}")
     print(f"Confidence: {confidence:.2f}%")
 
