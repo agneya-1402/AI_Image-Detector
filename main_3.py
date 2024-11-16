@@ -7,10 +7,20 @@ import numpy as np
 
 class AIImageDetector:
     def __init__(self):
-        # Init model
-        self.model = resnet18(pretrained=True)
         
+        # Init pretrained RESNET18 (CNN with 18 layers) model
+        self.model = resnet18(pretrained=True)
+        '''
+        Key Features:
+        Texture consistency
+        Lighting and shadow patterns
+        Edge coherence
+        Color distributions
+        Facial features (in portraits)
+        Geometric consistency
+        Artifact patterns common in AI generation'''
         # final layer -> binary classification
+        # 0 = Real, 1 = AI
         num_features = self.model.fc.in_features
         self.model.fc = nn.Sequential(
             nn.Linear(num_features, 256),
