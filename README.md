@@ -1,7 +1,7 @@
 # AI Image Detector
 
 A Streamlit-based web application that detects whether an image is AI-generated or real using deep learning. The detector uses a fine-tuned ResNet18 model to analyze images and provide confidence scores.
-
+[dashboard.png](https://github.com/agneya-1402/AI_Image-Detector/blob/main/dashboard.png)
 ## 🌟 Features
 
 - Upload images through the web interface
